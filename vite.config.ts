@@ -8,11 +8,14 @@ export default defineConfig({
   plugins: [
     UnoCSS({
       presets: [presetUno(), presetAttributify()],
-      include: [
-        './index.html',
-        './src/**/*.{vue,js,ts,jsx,tsx}',
-        './node_modules/primevue/**/*.{vue,js,ts,jsx,tsx}'
-      ]
+      content: {
+        pipeline: {
+          include: [
+            /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+            'src/**/*.{js,ts}'
+          ]
+        }
+      }
     })
   ]
 })
