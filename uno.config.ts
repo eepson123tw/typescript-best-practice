@@ -9,6 +9,14 @@ import {
 } from 'unocss'
 
 export default defineConfig({
+  content: {
+    pipeline: {
+      include: [
+        /\.(vue|svelte|[jt]sx|mdx?|astro|elm|php|phtml|html)($|\?)/,
+        'src/**/*.{js,ts}'
+      ]
+    }
+  },
   shortcuts: {
     'border-main': 'border-gray-400 border-opacity-30',
     'bg-main': 'bg-gray-400',
