@@ -32,14 +32,14 @@ body {
 
 
 .input-btn {
-  @apply bg-[#dadce0] b-1 b-solid b-[#dadce0] line-height-[36px] rounded h-[34px]
+  --at-apply: bg-[#dadce0] b-1 b-solid b-[#dadce0] line-height-[36px] rounded h-[34px]
 }
 
 .input-btn--light {
-  @apply bg-[#f1f3f4] b-[#f1f3f4] 
+  --at-apply: bg-[#f1f3f4] b-[#f1f3f4] 
 }
 .input-btn--blue {
-  @apply bg-[#4285f4] b-[#4285f4]  font-bold text-white font-size-[18px]
+  --at-apply: bg-[#4285f4] b-[#4285f4]  font-bold text-white font-size-[18px]
 }
 
 .license{
