@@ -18,16 +18,9 @@ export function getInputFocus(
   element: HTMLDivElement,
   focusElement: HTMLDivElement
 ) {
-  element.addEventListener('click', (e) => {
+  element.addEventListener('click', () => {
     const currentClassList = focusElement.classList
     currentClassList.toggle('b-[#dadce0]')
     currentClassList.toggle('b-[#4285f4]')
   })
-  // let counter = 0
-  // const setCounter = (count: number) => {
-  //   counter = count
-  //   element.innerHTML = `count is ${counter}`
-  // }
-  // element.addEventListener('click', () => setCounter(counter + 1))
-  // setCounter(0)
 }

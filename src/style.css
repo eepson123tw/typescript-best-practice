@@ -41,3 +41,13 @@ body {
 .input-btn--blue {
   @apply bg-[#4285f4] b-[#4285f4]  font-bold text-white font-size-[18px]
 }
+
+.license{
+  position: fixed;
+  bottom: 0;
+  background:#000;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding: 2px;
+}
