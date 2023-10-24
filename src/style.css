@@ -30,6 +30,7 @@ body {
   font-weight: 400;
 }
 
+.js-input:focus {outline: #4285f4 solid 1px;}
 
 .input-btn {
   --at-apply: bg-[#dadce0] b-1 b-solid b-[#dadce0] line-height-[36px] rounded h-[34px]

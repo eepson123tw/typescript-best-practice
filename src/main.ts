@@ -1,7 +1,7 @@
 import '@unocss/reset/normalize.css'
 import './style.css'
 import 'virtual:uno.css'
-import { mount, getInputFocus } from './counter.ts'
+import { mount, getInputFocus, watchEvent } from './domEvent.ts'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="text-center b-1 b-white b-solid p-3 w-[400px] md:w-[600px] lg:w-[800px] ">
@@ -87,9 +87,20 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 `
 
 getInputFocus(
-  document.querySelector<HTMLDivElement>('.jx-input')!,
-  document.querySelector<HTMLDivElement>('.jx-input')!
+  document.querySelector<HTMLDivElement>('.js-input')!,
+  document.querySelector<HTMLDivElement>('.js-input')!
 )
+
+watchEvent(
+  window,
+  'keydown',
+  document.querySelector<HTMLDivElement>('.js-input')!,
+  document.querySelector<HTMLDivElement>('.js-output')!
+)
+
+// window.addEventListener('keydown', (e: Event) => {
+//   console.log(e)
+// })
 
 /* 先留者看 methods
  <table class="HOoTuc">
