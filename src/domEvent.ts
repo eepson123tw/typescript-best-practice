@@ -1,3 +1,5 @@
+import queueInstance from './inputQueue.ts'
+
 export function mount(text: string) {
   const inputArea = ` <div tabindex="0" data-focus="0" class="flex bg-white b-2 b-solid b-rounded b-[#dadce0] text-black mx-[5px] pr-[14px] pl-[10px] pt-[10px] flex-wrap hover:drop-shadow hover:shadow-inset js-input">
 <div class="j-history w-[22px] h-[22px] text-gray">
@@ -42,9 +44,15 @@ export function watchEvent(
     }
     e.key !== 'Tab' && input.focus()
     if (e.key === 'Backspace') {
-      output.innerHTML = '0'
+      queueInstance.queueReset()
+      output.innerHTML = queueInstance.queue.join()
       return
     }
-    output.innerHTML += e.key
+    if (isNaN(+e.key)) {
+      return
+    }
+
+    queueInstance.queueInsert(e.key)
+    output.innerHTML = queueInstance.queue.join('').replace(/^[0]/gi, '')
   })
 }
