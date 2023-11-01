@@ -37,22 +37,35 @@ export function watchEvent(
   output: HTMLDivElement
 ) {
   window.addEventListener(eventType, (e: KeyboardEvent) => {
+    const methodsRegex = /^(?:\+|\-|\*|\/)+/
+
     const regex =
-      /\b(?:(?!Shift|Ctrl|Alt|CapsLock|Escape|PageUp|PageDown|End|Home|Insert|Delete|ArrowLeft|ArrowUp|ArrowRight|ArrowDown|Meta).)+\b/
-    if (!e.key.match(regex)) {
+      /^(?:Shift|Ctrl|Alt|CapsLock|Escape|PageUp|PageDown|End|Home|Insert|Delete|ArrowLeft|ArrowUp|ArrowRight|ArrowDown|Meta)$/
+
+    if (e.key.match(regex)) {
+      // If it's a functional key, we skip the following code.
       return
     }
+
     e.key !== 'Tab' && input.focus()
+
     if (e.key === 'Backspace') {
       queueInstance.queueReset()
       output.innerHTML = queueInstance.queue.join()
       return
     }
-    if (isNaN(+e.key)) {
+
+    //檢查是否為功能鍵
+    if (isNaN(+e.key) && !e.key.match(methodsRegex)) {
       return
     }
+    // 若是功能鍵
+    if (e.key.match(methodsRegex)) {
+      queueInstance.queueInsertMethodsKey(e.key)
+    } else {
+      queueInstance.queueInsert(e.key)
+    }
 
-    queueInstance.queueInsert(e.key)
     output.innerHTML = queueInstance.queue.join('').replace(/^[0]/gi, '')
   })
 }
